@@ -9,37 +9,37 @@
     <meta name="theme-color" content="#ffffff" />
 </head>
 <body>
-   <script>
-	 function getUrlQueryString(names, urls) {
+	<script>
+		function getUrlQueryString(names, urls) {
 			urls = urls || window.location.href;
 			urls && urls.indexOf("?") > -1 ? urls = urls.substring(urls.indexOf("?") + 1) : "";
 			var reg = new RegExp("(^|&)" + names + "=([^&]*)(&|$)", "i");
 			var r = urls ? urls.match(reg) : window.location.search.substr(1).match(reg);
 			if (r != null && r[2] != "")return unescape(r[2]);
 			return null;
-	 }
-	 var geturl=getUrlQueryString('geturl');
-	 var title=getUrlQueryString('title',BASE64.decode(geturl));
-   if(title){
-       document.getElementsByTagName("title")[0].innerText = title;	
-   }else{
-       document.getElementsByTagName("title")[0].innerText = 'null';	
-   }
-   var url=BASE64.decode(geturl);
-   if(url){
-       self.location.href=BASE64.decode(geturl);
-   }else{
+		}
+		var geturl=getUrlQueryString('geturl');
+		var title=getUrlQueryString('title',BASE64.decode(geturl));
+		if(title){
+			document.getElementsByTagName("title")[0].innerText = title;
+		}else{
+			document.getElementsByTagName("title")[0].innerText = 'null';
+		}
+		var url=BASE64.decode(geturl);
+		if(url){
+			self.location.href=BASE64.decode(geturl);
+		}else{
 			var userAgent = navigator.userAgent;
 			if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Chrome") !=-1) {
-				window.location.href="about:blank";   
+				window.location.href="about:blank";
 			}else if(userAgent.indexOf('Android') > -1 || userAgent.indexOf('Linux') > -1){
-				window.opener=null;window.open('about:blank','_self','').close(); 
+				window.opener=null;window.open('about:blank','_self','').close();
 			}else {
 				window.close();
 				window.pener = null;
 				window.open("about:blank", "_self");
 			}
-   }
-   </script>
+		}
+	</script>
 </body>
 </html>
