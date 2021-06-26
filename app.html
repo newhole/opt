@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+	<script src="base64.js"></script>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	html,body{
+		width: 100%;
+		height: 100%;
+	}
+
+	.container{
+		width: 100%;
+		height: 100%;
+	}
+</style>
+<body>
+	<div class = "container"  >
+		<iframe id="myIframe" src=""  width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="0"  scrolling="no"></iframe>
+	</div>
+	<script>
+		function getUrlQueryString(names, urls) {
+			urls = urls || window.location.href;
+			urls && urls.indexOf("?") > -1 ? urls = urls.substring(urls.indexOf("?") + 1) : "";
+			var reg = new RegExp("(^|&)" + names + "=([^&]*)(&|$)", "i");
+			var r = urls ? urls.match(reg) : window.location.search.substr(1).match(reg);
+			if (r != null && r[2] != "")return unescape(r[2]);
+			return null;
+		}
+		var geturl=getUrlQueryString('geturl');
+		var title=getUrlQueryString('title',BASE64.decode(geturl));
+		document.getElementsByTagName("title")[0].innerText = title;
+		document.getElementById('myIframe').src = BASE64.decode(geturl);	
+	</script>
+</body>
+</html>
