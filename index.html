@@ -7,7 +7,7 @@
     <title></title>
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
-    <script src="base64.js"></script>
+	<script src="base64.js"></script>
 </head>
 <body>
 	<script>
@@ -19,17 +19,7 @@
 			if (r != null && r[2] != "")return unescape(r[2]);
 			return null;
 		}
-		var geturl=getUrlQueryString('geturl');
-		var title=getUrlQueryString('title',BASE64.decode(geturl));
-		if(title){
-			document.getElementsByTagName("title")[0].innerText = title;
-		}else{
-			document.getElementsByTagName("title")[0].innerText = 'null';
-		}
-		var url=BASE64.decode(geturl);
-		if(url){
-			self.location.href=BASE64.decode(geturl);
-		}else{
+		function closepage() {
 			var userAgent = navigator.userAgent;
 			if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Chrome") !=-1) {
 				window.location.href="about:blank";
@@ -41,6 +31,24 @@
 				window.open("about:blank", "_self");
 			}
 		}
+		var geturl=getUrlQueryString('geturl');
+		if(geturl){
+			var url=BASE64.decode(geturl);
+			var title=getUrlQueryString('title',url);
+			if(title){
+				document.getElementsByTagName("title")[0].innerText = title;
+			}else{
+				document.getElementsByTagName("title")[0].innerText = 'null';
+			}
+			if(url){
+				self.location.href=url;
+			}else{
+				closepage();
+			}
+		}else{
+			closepage();
+		}
+		
 	</script>
 </body>
 </html>
